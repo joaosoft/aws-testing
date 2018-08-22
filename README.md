@@ -16,6 +16,13 @@ Project dependencies are managed using Dep. Read more about [Dep](https://github
 * Update dependencies: `dep ensure -update`
 
 
+## Docker
+>### Start Environment 
+* DynamoDB
+```
+make env
+```
+
 
 ## Known issues
 
