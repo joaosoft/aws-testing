@@ -1,6 +1,3 @@
-run:
-	go run ./main/main.go
-
 fmt:
 	go fmt ./...
 
@@ -9,3 +6,6 @@ vet:
 
 gometalinter:
 	gometalinter ./*
+
+init:
+	docker-compose up -d aws.dynamodb

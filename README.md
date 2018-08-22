@@ -1,13 +1,12 @@
-# builder
-[![Build Status](https://travis-ci.org/joaosoft/builder.svg?branch=master)](https://travis-ci.org/joaosoft/builder) | [![codecov](https://codecov.io/gh/joaosoft/builder/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/builder) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/builder)](https://goreportcard.com/report/github.com/joaosoft/builder) | [![GoDoc](https://godoc.org/github.com/joaosoft/builder?status.svg)](https://godoc.org/github.com/joaosoft/builder)
+# aws
+[![Build Status](https://travis-ci.org/joaosoft/aws.svg?branch=master)](https://travis-ci.org/joaosoft/aws) | [![codecov](https://codecov.io/gh/joaosoft/aws/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/aws) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/aws)](https://goreportcard.com/report/github.com/joaosoft/aws) | [![GoDoc](https://godoc.org/github.com/joaosoft/aws?status.svg)](https://godoc.org/github.com/joaosoft/aws)
 
-A simple golang build and restart tool when some file of the project changes
+A project with aws dummy examples
 
 ###### If i miss something or you have something interesting, please be part of this project. Let me know! My contact is at the end.
 
-## With support for
-* Rebuild
-* Restart
+## With examples for
+* DynamoDB
 
 ## Dependecy Management 
 >### Dep
@@ -17,68 +16,6 @@ Project dependencies are managed using Dep. Read more about [Dep](https://github
 * Update dependencies: `dep ensure -update`
 
 
->### Go
-```
-go get github.com/joaosoft/builder
-```
-
-## Usage 
-This examples are available in the project at [builder/main/main.go](https://github.com/joaosoft/builder/tree/master/main/main.go)
-```
-import (
-	github.com/joaosoft/builder
-	"os"
-	"os/signal"
-	"syscall"
-)
-
-func main() {
-	termChan := make(chan os.Signal, 1)
-	signal.Notify(termChan, syscall.SIGINT, syscall.SIGTERM, syscall.SIGUSR1)
-
-	build := builder.NewBuilder(builder.WithReloadTime(1))
-
-	if err := build.Start(nil); err != nil {
-		panic(err)
-	}
-
-	<-termChan
-	if err := build.Stop(nil); err != nil {
-		panic(err)
-	}
-}
-```
-
-
-> Configuration file
-```
-{
-  "builder": {
-    "source": "main/main.go",
-    "destination": "bin/builder",
-    "reload_time": 1,
-    "log": {
-      "level": "error"
-    }
-  },
-  "watcher": {
-    "reload_time": 1,
-    "dirs": {
-      "watch":[ "." ],
-      "excluded":[ "vendor", "bin" ],
-      "extensions": [ "go", "json", "yml" ]
-    },
-    "log": {
-      "level": "error"
-    }
-  },
-  "manager": {
-    "log": {
-      "level": "error"
-    }
-  }
-}
-```
 
 ## Known issues
 
