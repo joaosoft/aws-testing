@@ -9,3 +9,6 @@ gometalinter:
 
 init:
 	docker-compose up -d aws.dynamodb
+
+build:
+	go build -o ./dynamodb/dynamodb ./dynamodb/main.go
